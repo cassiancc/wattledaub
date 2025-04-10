@@ -18,6 +18,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class WattleBlock extends PaneBlock {
 	public static final MapCodec<WattleBlock> CODEC = createCodec(WattleBlock::new);
@@ -49,29 +50,34 @@ public class WattleBlock extends PaneBlock {
 
     @Override
     public ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            Block newBlock = this;
-            if (stack.isOf(ModItems.CLAY_DAUB_BALL)) {
-                newBlock = ModBlocks.SCATTERED_CLAY_DAUB;
-            } else if (stack.isOf(ModItems.COARSE_CLAY_DAUB_BALL)) {
-                newBlock = ModBlocks.SCATTERED_COARSE_CLAY_DAUB;
-            } else if (stack.isOf(ModItems.MUD_DAUB_BALL)) {
-                newBlock = ModBlocks.SCATTERED_MUD_DAUB;
-            } else if (stack.isOf(ModItems.PACKED_MUD_DAUB_BALL)) {
-                newBlock = ModBlocks.SCATTERED_PACKED_MUD_DAUB;
-            } else if (stack.isOf(ModItems.SAND_DAUB_BALL)) {
-                newBlock = ModBlocks.SCATTERED_SAND_DAUB;
-            }
-            if (newBlock != this) {
+        Block newBlock = getBlock(stack);
+        if (newBlock != this) {
+            if (!world.isClient) {
                 world.setBlockState(pos, newBlock.getDefaultState(), Block.NOTIFY_ALL);
-                world.playSound(null, pos, SoundEvents.BLOCK_MUD_PLACE, SoundCategory.BLOCKS, 0.75f, 1.0f);
                 if (!player.isCreative()) {
                     stack.decrement(1);
                 }
-				player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
-                return ItemActionResult.success(world.isClient);
+                world.playSound(null, pos, SoundEvents.BLOCK_MUD_PLACE, SoundCategory.BLOCKS, 0.75f, 1.0f);
+                player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
             }
+            return ItemActionResult.success(world.isClient);
         }
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+    }
+
+    private @NotNull Block getBlock(ItemStack stack) {
+        Block newBlock = this;
+        if (stack.isOf(ModItems.CLAY_DAUB_BALL)) {
+            newBlock = ModBlocks.SCATTERED_CLAY_DAUB;
+        } else if (stack.isOf(ModItems.COARSE_CLAY_DAUB_BALL)) {
+            newBlock = ModBlocks.SCATTERED_COARSE_CLAY_DAUB;
+        } else if (stack.isOf(ModItems.MUD_DAUB_BALL)) {
+            newBlock = ModBlocks.SCATTERED_MUD_DAUB;
+        } else if (stack.isOf(ModItems.PACKED_MUD_DAUB_BALL)) {
+            newBlock = ModBlocks.SCATTERED_PACKED_MUD_DAUB;
+        } else if (stack.isOf(ModItems.SAND_DAUB_BALL)) {
+            newBlock = ModBlocks.SCATTERED_SAND_DAUB;
+        }
+        return newBlock;
     }
 }
