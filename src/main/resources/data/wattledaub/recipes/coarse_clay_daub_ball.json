@@ -6,7 +6,7 @@
         "item": "minecraft:clay_ball"
       },
       "#": {
-        "item": "minecraft:sand"
+        "item": "minecraft:coarse_dirt"
       }
     },
     "pattern": [
@@ -15,6 +15,6 @@
     ],
     "result": {
       "count": 6,
-      "id": "wattledaub:sand_daub_ball"
+      "item": "wattledaub:coarse_clay_daub_ball"
     }
   }

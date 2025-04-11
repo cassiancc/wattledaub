@@ -13,20 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "predicates": {
-                      "minecraft:enchantments": [
-                        {
-                          "enchantments": "minecraft:silk_touch",
-                          "levels": {
-                            "min": 1
-                          }
-                        }
-                      ]
-                    }
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": 1
+                      }
+                    ]
                   }
                 }
               ],
-              "name": "wattledaub:scattered_mud_daub"
+              "name": "wattledaub:clay_daub"
             },
             {
               "type": "minecraft:item",
@@ -55,16 +51,13 @@
           "term": {
             "condition": "minecraft:match_tool",
             "predicate": {
-              "predicates": {
-                "minecraft:enchantments": [
-                  {
-                    "enchantments": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
-                  }
-                ]
-              }
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch",
+                  "levels": 1
+                }
+              ],
+              "stored_enchantments": []
             }
           }
         }
@@ -75,18 +68,17 @@
           "functions": [
             {
               "add": false,
-              "count": 1,
+              "count": 3,
               "function": "minecraft:set_count"
             },
             {
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "wattledaub:mud_daub_ball"
+          "name": "wattledaub:clay_daub_ball"
         }
       ],
       "rolls": 1
     }
-  ],
-  "random_sequence": "wattledaub:blocks/scattered_mud_daub"
+  ]
 }

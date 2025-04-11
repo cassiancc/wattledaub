@@ -13,16 +13,12 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "predicates": {
-                      "minecraft:enchantments": [
-                        {
-                          "enchantments": "minecraft:silk_touch",
-                          "levels": {
-                            "min": 1
-                          }
-                        }
-                      ]
-                    }
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": 1
+                      }
+                    ]
                   }
                 }
               ],
@@ -55,16 +51,13 @@
           "term": {
             "condition": "minecraft:match_tool",
             "predicate": {
-              "predicates": {
-                "minecraft:enchantments": [
-                  {
-                    "enchantments": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
-                  }
-                ]
-              }
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch",
+                  "levels": 1
+                }
+              ],
+              "stored_enchantments": []
             }
           }
         }
@@ -87,6 +80,5 @@
       ],
       "rolls": 1
     }
-  ],
-  "random_sequence": "wattledaub:blocks/mud_daub"
+  ]
 }

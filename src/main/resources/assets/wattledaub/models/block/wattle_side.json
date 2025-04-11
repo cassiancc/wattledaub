@@ -1,5 +1,6 @@
 {
-	"credit": "Made with Blockbench",
+  "render_type": "cutout",
+  "credit": "Made with Blockbench",
 	"textures": {
 		"0": "wattledaub:block/wattle",
 		"particle": "wattledaub:block/wattle"

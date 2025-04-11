@@ -3,36 +3,25 @@ package evannakita.wattledaub;
 import evannakita.wattledaub.item.DaubItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.item.ItemGroup;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.Supplier;
+
+import static evannakita.wattledaub.WattleAndDaub.MOD_ID;
 
 public class ModItems  {
-    public static final Item CLAY_DAUB_BALL = new DaubItem(new Item.Settings());
-    public static final Item COARSE_CLAY_DAUB_BALL = new DaubItem(new Item.Settings());
-    public static final Item MUD_DAUB_BALL = new DaubItem(new Item.Settings());
-    public static final Item PACKED_MUD_DAUB_BALL = new DaubItem(new Item.Settings());
-    public static final Item SAND_DAUB_BALL = new DaubItem(new Item.Settings());
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
-    public static final Item SCATTERED_CLAY_DAUB = new BlockItem(ModBlocks.SCATTERED_CLAY_DAUB, new Item.Settings());
-    public static final Item COVERED_CLAY_DAUB = new BlockItem(ModBlocks.COVERED_CLAY_DAUB, new Item.Settings());
-    public static final Item CLAY_DAUB = new BlockItem(ModBlocks.CLAY_DAUB, new Item.Settings());
-    public static final Item SCATTERED_COARSE_CLAY_DAUB = new BlockItem(ModBlocks.SCATTERED_COARSE_CLAY_DAUB, new Item.Settings());
-    public static final Item COARSE_CLAY_DAUB = new BlockItem(ModBlocks.COARSE_CLAY_DAUB, new Item.Settings());
-    public static final Item COVERED_COARSE_CLAY_DAUB = new BlockItem(ModBlocks.COVERED_COARSE_CLAY_DAUB, new Item.Settings());
-    public static final Item SCATTERED_MUD_DAUB = new BlockItem(ModBlocks.SCATTERED_MUD_DAUB, new Item.Settings());
-    public static final Item COVERED_MUD_DAUB = new BlockItem(ModBlocks.COVERED_MUD_DAUB, new Item.Settings());
-    public static final Item MUD_DAUB = new BlockItem(ModBlocks.MUD_DAUB, new Item.Settings());
-    public static final Item SCATTERED_PACKED_MUD_DAUB = new BlockItem(ModBlocks.SCATTERED_PACKED_MUD_DAUB, new Item.Settings());
-    public static final Item COVERED_PACKED_MUD_DAUB = new BlockItem(ModBlocks.COVERED_PACKED_MUD_DAUB, new Item.Settings());
-    public static final Item PACKED_MUD_DAUB = new BlockItem(ModBlocks.PACKED_MUD_DAUB, new Item.Settings());
-    public static final Item SCATTERED_SAND_DAUB = new BlockItem(ModBlocks.SCATTERED_SAND_DAUB, new Item.Settings());
-    public static final Item COVERED_SAND_DAUB = new BlockItem(ModBlocks.COVERED_SAND_DAUB, new Item.Settings());
-    public static final Item SAND_DAUB = new BlockItem(ModBlocks.SAND_DAUB, new Item.Settings());
-    public static final Item WATTLE = new BlockItem(ModBlocks.WATTLE, new Item.Settings());
+    public static final Supplier<Item> CLAY_DAUB_BALL = ModItems.register("clay_daub_ball",  ()-> new DaubItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+    public static final Supplier<Item> COARSE_CLAY_DAUB_BALL = ModItems.register("coarse_clay_daub_ball", ()-> new DaubItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+    public static final Supplier<Item> MUD_DAUB_BALL = ModItems.register("mud_daub_ball", ()-> new DaubItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+    public static final Supplier<Item> PACKED_MUD_DAUB_BALL = ModItems.register("packed_mud_daub_ball", ()-> new DaubItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+    public static final Supplier<Item> SAND_DAUB_BALL = ModItems.register("sand_daub_ball", ()-> new DaubItem(new Item.Settings().group(ItemGroup.MATERIALS)));
 
-    public static Item register(String id, Item item) {
-        return (Item)Registry.register(Registries.ITEM, Identifier.of(WattleAndDaub.MOD_ID, id), item);
+    public static Supplier<Item> register(String id, Supplier<Item> item) {
+        return ITEMS.register(id, item);
     }
 
 }

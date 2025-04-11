@@ -13,20 +13,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "predicates": {
-                      "minecraft:enchantments": [
-                        {
-                          "enchantments": "minecraft:silk_touch",
-                          "levels": {
-                            "min": 1
-                          }
-                        }
-                      ]
-                    }
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": 1
+                      }
+                    ]
                   }
                 }
               ],
-              "name": "wattledaub:covered_clay_daub"
+              "name": "wattledaub:scattered_packed_mud_daub"
             },
             {
               "type": "minecraft:item",
@@ -55,16 +51,13 @@
           "term": {
             "condition": "minecraft:match_tool",
             "predicate": {
-              "predicates": {
-                "minecraft:enchantments": [
-                  {
-                    "enchantments": "minecraft:silk_touch",
-                    "levels": {
-                      "min": 1
-                    }
-                  }
-                ]
-              }
+              "enchantments": [
+                {
+                  "enchantment": "minecraft:silk_touch",
+                  "levels": 1
+                }
+              ],
+              "stored_enchantments": []
             }
           }
         }
@@ -82,11 +75,10 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "wattledaub:clay_daub_ball"
+          "name": "wattledaub:packed_mud_daub_ball"
         }
       ],
       "rolls": 1
     }
-  ],
-  "random_sequence": "wattledaub:blocks/covered_clay_daub"
+  ]
 }
