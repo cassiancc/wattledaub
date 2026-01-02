@@ -1,6 +1,9 @@
 package evannakita.wattledaub;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -29,7 +32,45 @@ public class WattleAndDaub {
 
 		ModBlocks.BLOCKS.register(eventBus);
 		ModItems.ITEMS.register(eventBus);
+		eventBus.addListener(WattleAndDaub::buildCreativeModeTabs);
+	}
 
+	public static void buildCreativeModeTabs(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey().equals(ItemGroups.BUILDING_BLOCKS)) {
+			addAfter(event, Items.WARPED_BUTTON,
+					ModBlocks.WATTLE.asItem(),
+					ModBlocks.SCATTERED_CLAY_DAUB.asItem(),
+					ModBlocks.COVERED_CLAY_DAUB.asItem(),
+					ModBlocks.CLAY_DAUB.asItem(),
+					ModBlocks.SCATTERED_COARSE_CLAY_DAUB.asItem(),
+					ModBlocks.COVERED_COARSE_CLAY_DAUB.asItem(),
+					ModBlocks.COARSE_CLAY_DAUB.asItem(),
+					ModBlocks.SCATTERED_SAND_DAUB.asItem(),
+					ModBlocks.COVERED_SAND_DAUB.asItem(),
+					ModBlocks.SAND_DAUB.asItem(),
+					ModBlocks.SCATTERED_MUD_DAUB.asItem(),
+					ModBlocks.COVERED_MUD_DAUB.asItem(),
+					ModBlocks.MUD_DAUB.asItem(),
+					ModBlocks.SCATTERED_PACKED_MUD_DAUB.asItem(),
+					ModBlocks.COVERED_PACKED_MUD_DAUB.asItem(),
+					ModBlocks.PACKED_MUD_DAUB.asItem()
+			);
+		}
 
+		if (event.getTabKey().equals(ItemGroups.INGREDIENTS)) {
+			addAfter(event, Items.CLAY_BALL,
+					ModItems.CLAY_DAUB_BALL.get(),
+					ModItems.COARSE_CLAY_DAUB_BALL.get(),
+					ModItems.SAND_DAUB_BALL.get(),
+					ModItems.MUD_DAUB_BALL.get(),
+					ModItems.PACKED_MUD_DAUB_BALL.get()
+			);
+		}
+	}
+
+	private static void addAfter(BuildCreativeModeTabContentsEvent event, Item anchor, Item... items) {
+		for (Item item : items) {
+			event.add(item);
+		}
 	}
 }
